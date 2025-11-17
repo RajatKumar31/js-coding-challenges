@@ -1,14 +1,13 @@
 // implement custom Array.prototype.some method
 
-Array.prototype.customSome = function (callback) {
-    let flag = false;
-    this.forEach((elem) => {
-        if (callback(elem)) {
-            flag = true;
-        }
-        console.log("elem : ", elem, " result : ", callback(elem));
-    });
-    return flag;
+Array.prototype.customSome = function(callback) {
+	let flag = false;
+	this.forEach((elem) => {
+		if (callback(elem)) {
+			flag = true;
+		}
+	});
+	return flag;
 }
 
 

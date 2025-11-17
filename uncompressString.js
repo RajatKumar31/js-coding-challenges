@@ -5,26 +5,26 @@
 const isNumeric = (str) => !isNaN(parseFloat(str)) && isFinite(Number(str));
 
 function uncompress(str) {
-    const stack = [];
-    for (const char of str) {
-        if (char !== ')') {
-            stack.push(char);
-        } else {
-            let word = '';
-            let count = '';
-            // !1. Find the string
-            while (stack.length && stack[stack.length - 1] !== '(') {
-                word = stack.pop() + word;
-            }
-            stack.pop();
-            // !2. Find the number of repetitions (or frequency)
-            while (stack.length && isNumeric(stack[stack.length - 1])) {
-                count = stack.pop() + count;
-            }
-            stack.push(word.repeat(Number(count)));
-        }
-    }
-    return stack.join('');
+	const stack = [];
+	for (const char of str) {
+		if (char !== ')') {
+			stack.push(char);
+		} else {
+			let word = '';
+			let count = '';
+			// !1. Find the string
+			while (stack.length && stack[stack.length - 1] !== '(') {
+				word = stack.pop() + word;
+			}
+			stack.pop();
+			// !2. Find the number of repetitions (or frequency)
+			while (stack.length && isNumeric(stack[stack.length - 1])) {
+				count = stack.pop() + count;
+			}
+			stack.push(word.repeat(Number(count)));
+		}
+	}
+	return stack.join('');
 }
 console.log(uncompress("2(BFE2(dev))"));
 

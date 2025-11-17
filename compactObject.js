@@ -2,7 +2,10 @@
  * @param {Object|Array} obj
  * @return {Object|Array}
  */
-var compactObject = function (obj) { };
+var compactObject = function(obj) {
+	if (Boolean(obj) === false) { }
+};
+
 compactObject([null, 0, false, 1]);
 
 // Example 1:
