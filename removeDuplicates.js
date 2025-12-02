@@ -41,4 +41,22 @@ function keepDuplicates(arr) {
 	return arr;
 }
 
-console.log(keepDuplicates(arr));
+// console.log(keepDuplicates(arr));
+
+function removeDuplicatesFromSortedArray(arr) {
+	if (arr.length == 0) {
+		return 0;
+	}
+	let k = 1;
+	for (let i = 1; i < arr.length; i++) {
+		if (arr[i - 1] != arr[i]) {
+			arr[k] = arr[i];
+			k++;
+		}
+	}
+	return k;
+}
+
+arr = [1, 1, 3, 3, 4, 5, 5, 6, 6, 6, 7, 9];
+console.log(removeDuplicatesFromSortedArray(arr));
+console.log(arr);
