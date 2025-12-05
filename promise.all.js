@@ -2,39 +2,30 @@
  * @param {Array<any>} promises - notice input might have non-Promises
  * @return {Promise<any[]>}
  */
-function all(promises) {
-	const _promises = promises.map((promise) => {
-		if (promise instanceof Promise) {
-			return promise;
-		} else {
-			return Promise.resolve(promise);
-		}
-	});
-	if (promises.length === 0) {
-		return Promise.resolve([]);
-	}
+function customPromiseAll(promises) {
 	return new Promise((resolve, reject) => {
-		let result = [];
-		let fulfilledCount = 0;
-		let isErrored = false;
+		if (!Array.isArray(promises)) {
+			return reject(new Error("Argument must be an array"));
+		}
+		let results = [];
+		let remaining = promises.length;
 
-		_promises.forEach((promise, index) => {
-			promise.then((value) => {
-				if (isErrored) {
-					return;
+		promises.forEach((p, index) => {
+			Promise.resolve(p).then((data) => {
+				results[index] = data;
+				remaining--;
+				if (remaining == 0) {
+					resolve(results);
 				}
-				result[index] = value;
-				fulfilledCount++;
-				if (fulfilledCount === _promises.length) {
-					resolve(result);
-				}
-			}).catch((err) => {
-				if (isErrored) {
-					return;
-				}
-				isErrored = true;
-				reject(err);
-			})
-		})
-	})
+			}).catch((error) => {
+				reject(error)
+			});
+		});
+	});
 }
+
+customPromiseAll([
+	Promise.resolve(1),
+	2,
+	new Promise(res => setTimeout(() => res(3), 1000))
+]).then(console.log); 
