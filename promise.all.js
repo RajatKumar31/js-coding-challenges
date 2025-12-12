@@ -27,5 +27,5 @@ function customPromiseAll(promises) {
 customPromiseAll([
 	Promise.resolve(1),
 	2,
-	new Promise(res => setTimeout(() => res(3), 1000))
+	new Promise(resolve => setTimeout(() => resolve(3), 1000))
 ]).then(console.log); 

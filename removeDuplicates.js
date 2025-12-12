@@ -60,3 +60,21 @@ function removeDuplicatesFromSortedArray(arr) {
 arr = [1, 1, 3, 3, 4, 5, 5, 6, 6, 6, 7, 9];
 console.log(removeDuplicatesFromSortedArray(arr));
 console.log(arr);
+
+let str = "🔥Hello😊";
+function removeDuplicatesFromStringWithEmoji(str) {
+	// for(let index in str) {
+	// 	console.log("index : " , str[index]);
+	// }
+	// console.log("********************************");
+	// for(let val of str) {
+	// 	console.log("val : " , val);
+	// }
+	const set = new Set();
+	for(let elem of str) {
+		if(!set.has(elem)) {
+			set.add(elem);
+		}
+	}
+	console.log(Array.from(set.values()));
+}
