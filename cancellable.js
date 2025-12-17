@@ -14,6 +14,9 @@ var cancellable = function(fn, args, t) {
 	}
 };
 
+const cancellableFunction = cancellable(fn, [], 2000);
+setTimeout(() => cancellableFunction(), 9000);
+
 /**
  *  const result = [];
  *
