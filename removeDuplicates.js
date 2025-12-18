@@ -71,10 +71,30 @@ function removeDuplicatesFromStringWithEmoji(str) {
 	// 	console.log("val : " , val);
 	// }
 	const set = new Set();
-	for(let elem of str) {
-		if(!set.has(elem)) {
+	for (let elem of str) {
+		if (!set.has(elem)) {
 			set.add(elem);
 		}
 	}
 	console.log(Array.from(set.values()));
 }
+
+// recursive remove duplicates from a string
+function removeDuplicatesFromStringUsingRecursion(str) { // hello
+	let result = "";
+
+	function helper(str, result) {
+		if (str.length <= 0) {
+			return result;
+		}
+		if (result.includes(str[0])) {
+			return helper(str.slice(1), result);
+		} else {
+			return helper(str.slice(1), result + str[0]);
+		}
+	}
+
+	return helper(str, result);
+}
+
+console.log(removeDuplicatesFromStringUsingRecursion("helllo"));
