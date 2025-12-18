@@ -6,8 +6,7 @@ function undefinedToNull(arg) {
 	} else if (Object.prototype.toString.call(arg) === "[object Object]") {
 		let keys = Object.keys(arg);
 		return keys.reduce((result, current) => {
-			result[current] =
-				arg[current] === undefined ? null : undefinedToNull(arg[current]);
+			result[current] = arg[current] === undefined ? null : undefinedToNull(arg[current]);
 			return result;
 		}, {});
 	}
