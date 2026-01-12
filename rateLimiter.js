@@ -24,4 +24,4 @@ const fn = function() {
 
 }
 
-const rateLimitedFn = rateLimit()
+const rateLimitedFn = rateLimit();
